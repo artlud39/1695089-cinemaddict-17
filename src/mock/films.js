@@ -1,37 +1,54 @@
-import {getRandomInteger} from '../utils/common.js';
-import {commentTexts} from '../const.js';
+import {getRandomInteger, getRandomIntegerFloating} from '../utils/common.js';
+import {actors, posters, countries, titles, genres} from '../const.js';
+import dayjs from 'dayjs';
+
+const descriptions = [
+  'Oscar-winning film, a war drama about two young people, from the creators of timeless classic "Nu, Pogodi!" and "Alice in Wonderland", with the best fight scenes since Bruce Lee.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Cras aliquet varius magna, non porta ligula feugiat eget.',
+  'Fusce tristique felis at fermentum pharetra.',
+  'Aliquam id orci ut lectus varius viverra.',
+  'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.',
+  'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.',
+  'Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat.',
+  'Nunc fermentum tortor ac porta dapibus.',
+  'In rutrum ac purus sit amet tempus.',
+];
+
+const writers = ['Eliza Chapman', 'Steven Fuller', 'Clifford Stevens', 'Nicholas Thomas', 'Ada Day'];
+const alternativeTitle = ['Laziness Who Sold Themselves', 'In rutrum ac purus sit amet tempus', 'Nunc fermentum tortor ac porta dapibus'];
+
+const getRandomActors = () => actors.slice(getRandomInteger(1,3),getRandomInteger(4,8));
+const getRandomPosters = () => `${'images/posters/'}${posters[getRandomInteger(1,posters.length -1)]}${'.png'}`;
+const getRandomTotalRating = () => +getRandomIntegerFloating(1.1, 9.9).toFixed(1);
+
+const getRandomGenres = () => genres.slice(getRandomInteger(1, 4));
 
 const getRandomFilms = () => ({
   id: 0,
   comments: [getRandomInteger(1,100),getRandomInteger(1,100)],
   filmInfo: {
-    title: 'A Little Pony Without The Carpet',
-    alternativeTitle: 'Laziness Who Sold Themselves',
-    totalRating: 5.3,
-    poster: 'images/posters/blue-blazes.jpg',
-    ageRating: 0,
-    director: 'Tom Ford',
-    writers: [
-      'Takeshi Kitano'
-    ],
-    actors: [
-      'Morgan Freeman'
-    ],
+    title: titles[getRandomInteger(0, titles.length -1)],
+    alternativeTitle: alternativeTitle[getRandomInteger(1,alternativeTitle.length - 1)],
+    totalRating: getRandomTotalRating(),
+    poster: getRandomPosters(),
+    ageRating: getRandomInteger(0,21),
+    director: actors[getRandomInteger(0, actors.length -1)],
+    writers: writers.slice(getRandomInteger(1, 4)),
+    actors: getRandomActors(),
     release: {
-      date: '2019-05-11T00:00:00.000Z',
-      releaseCountry: 'Finland'
+      date: dayjs().toISOString(),
+      releaseCountry: countries[getRandomInteger(1,countries.length - 1)]
     },
-    runtime: 77,
-    genre: [
-      'Comedy'
-    ],
-    description: 'Oscar-winning film, a war drama about two young people, from the creators of timeless classic "Nu, Pogodi!" and "Alice in Wonderland", with the best fight scenes since Bruce Lee.'
+    runtime: getRandomInteger(60, 125),
+    genre: getRandomGenres(),
+    description: descriptions[getRandomInteger(1,descriptions.length - 1)]
   },
   userDetails: {
-    watchlist: false,
-    alreadyWatched: true,
-    watchingDate: '2019-04-12T16:12:32.554Z',
-    favorite: false
+    watchlist: Boolean(getRandomInteger(0,1)),
+    alreadyWatched: Boolean(getRandomInteger(0,1)),
+    watchingDate: dayjs().toISOString(),
+    favorite: Boolean(getRandomInteger(0,1))
   }
 });
 

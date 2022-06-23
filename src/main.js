@@ -1,8 +1,5 @@
 import FilmsModel from './model/films-model.js';
 import BoardPresenter from './presenter/board-presenter.js';
-import ShowMoreButtonView from './view/show-more-button-view.js';
-import FilmCardView from './view/film-card-view.js';
-import FilmCardListView from './view/film-card-list-view.js';
 import ProfileView from './view/profile-view.js';
 import {render} from './render.js';
 
@@ -12,13 +9,25 @@ const siteHeaderElement = document.querySelector('.header');
 const filmsModel = new FilmsModel();
 const boardPresenter = new BoardPresenter();
 boardPresenter.init(siteMainElement, filmsModel);
-const siteFilmList = siteMainElement.querySelector('.films-list');
-render(new FilmCardListView, siteFilmList);
-const siteFilmContainer = siteMainElement.querySelector('.films-list__container');
 
-for(let i = 0; i < 5; i++) {
-  render(new FilmCardView, siteFilmContainer);
-}
 
-render(new ShowMoreButtonView, siteFilmList);
-render(new ProfileView, siteHeaderElement);
+render(new ProfileView(), siteHeaderElement);
+
+const URL1 = 'https://17.ecmascript.pages.academy/cinemaddict/movies';
+const URL2 = 'https://17.ecmascript.pages.academy/cinemaddict/comments/11';
+const KEY = 'Basic er883jdzbdw';
+
+fetch(URL1, {
+  method: 'GET',
+  headers: {
+    Authorization: KEY
+  }
+}).then((res) => console.log(res.json()));
+
+
+fetch(URL2, {
+  method: 'GET',
+  headers: {
+    Authorization: KEY
+  }
+}).then((res) => console.log(res.json()));

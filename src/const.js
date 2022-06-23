@@ -1,22 +1,15 @@
-import {getRandomInteger} from './utils/common.js';
-
 const emotions = ['smile', 'sleeping', 'puke', 'angry'];
 
 const authors = ['Tim Macoveev', 'John Doe', 'Allie Nash', 'Lou Luna','Virginia Norton'];
 
-const commentTexts = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-  'Cras aliquet varius magna, non porta ligula feugiat eget',
-  'Fusce tristique felis at fermentum pharetra',
-  'Aliquam id orci ut lectus varius viverra',
-  'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante',
-  'Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum',
-  'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui',
-  'Sed sed nisi sed augue convallis suscipit in sed felis',
-  'Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus' ,
-  'In rutrum ac purus sit amet tempus',
-];
+const actors = ['Christian Bale', 'Cillian Murphy', 'Tom Hanks', 'Michael Caine','Al Pacino', 'Morgan Freeman', 'Leonardo DiCaprio', 'Ralph Fiennes'];
 
-const getRandomCommetnText = () => commentTexts.slice(getRandomInteger(1,5), getRandomInteger(6,10)).join('.');
+const posters = ['made-for-each-other','popeye-meets-sinbad','sagebrush-trail', 'santa-claus-conquers-the-martians', 'the-dance-of-life', 'the-great-flamarion', 'the-man-with-the-golden-arm'];
 
-export {emotions , getRandomCommetnText, authors};
+const countries = ['Finland', 'Singapore', 'Congo - Kinshasa', 'Ireland','Ascension Island','France'];
+
+const titles = ['The Dance of Life', 'Sagebrush Trail', 'The Man with the Golden Arm', 'Santa Claus Conquers the Martians', 'Popeye the Sailor Meets Sindbad the Sailor', 'The Man with the Golden Arm', 'The Great Flamarion'];
+
+const genres = ['Comedy', 'Horror', 'Cartoon', 'Mystery', 'Drama'];
+
+export {emotions, authors, actors, posters, countries, titles, genres};
