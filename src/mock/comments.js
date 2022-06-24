@@ -23,7 +23,7 @@ const daysGap = getRandomInteger(-maxDaysGap, maxDaysGap);
 const getRandomDate = () => dayjs().add(daysGap, 'day').toISOString();
 
 const getRandomComments = () => ({
-  id: getRandomInteger(1,100),
+  id: getRandomInteger(1,10),
   author: authors[getRandomInteger(1, authors.length -1)],
   comment: getRandomCommetnText(),
   date: getRandomDate(),

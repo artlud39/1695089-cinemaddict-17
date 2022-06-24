@@ -2,7 +2,7 @@ import {getRandomFilms} from '../mock/films.js';
 import {getRandomComments} from '../mock/comments.js';
 
 export default class FilmsModel {
-  #films = Array.from({length: 4}, getRandomFilms);
+  #films = Array.from({length: 5}, getRandomFilms);
   #comments = Array.from({length: 10}, getRandomComments);
 
   get films() {

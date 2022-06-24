@@ -9,6 +9,7 @@ import FilmCardView from '../view/film-card-view.js';
 export default class BoardPresenter {
   filmSectionComponent = new FilmsSectionView();
   filmListComponent = new FilmCardListView();
+  siteFilmsList = this.filmSectionComponent.getElement().querySelector('.films-list');
 
   init = (boardContainer, filmsModel) => {
     this.boardContainer = boardContainer;
@@ -20,12 +21,12 @@ export default class BoardPresenter {
     render(new FilterView(),this.boardContainer);
     render(new SortView(), this.boardContainer);
     render(this.filmSectionComponent, this.boardContainer);
-    render(this.filmListComponent, this.filmSectionComponent);
+    render(this.filmListComponent, this.siteFilmsList);
 
-    for(let i = 0; i < 5; i++) {
-      render(new FilmCardView(), this.filmListComponent);
+    for (let i = 0; i < this.boardFilms.length; i++) {
+      render(new FilmCardView(this.boardFilms[i]), this.filmListComponent.getElement());
     }
 
-    render(new ShowMoreButtonView(), this.boardContainer);
+    render(new ShowMoreButtonView(), this.siteFilmsList);
   };
 }

@@ -4,7 +4,7 @@ const authors = ['Tim Macoveev', 'John Doe', 'Allie Nash', 'Lou Luna','Virginia 
 
 const actors = ['Christian Bale', 'Cillian Murphy', 'Tom Hanks', 'Michael Caine','Al Pacino', 'Morgan Freeman', 'Leonardo DiCaprio', 'Ralph Fiennes'];
 
-const posters = ['made-for-each-other','popeye-meets-sinbad','sagebrush-trail', 'santa-claus-conquers-the-martians', 'the-dance-of-life', 'the-great-flamarion', 'the-man-with-the-golden-arm'];
+const posters = ['made-for-each-other.png','popeye-meets-sinbad.png','sagebrush-trail.jpg', 'santa-claus-conquers-the-martians.jpg', 'the-dance-of-life.jpg', 'the-great-flamarion.jpg', 'the-man-with-the-golden-arm.jpg'];
 
 const countries = ['Finland', 'Singapore', 'Congo - Kinshasa', 'Ireland','Ascension Island','France'];
 
