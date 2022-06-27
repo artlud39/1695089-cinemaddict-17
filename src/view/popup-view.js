@@ -1,19 +1,19 @@
 import {createElement} from '../render.js';
-import {humanizeDateYears, getShortdescription, humanizeFilmDuration, humanizeDateDayMonthYear} from '../utils/films.js';
+import {humanizeFilmDuration, humanizeDateDayMonthYear} from '../utils/films.js';
+import {humanizeCommentDate} from '../utils/comments.js';
+
 import {emotions} from '../const.js';
 
-const createPopupTempalte = (film, comments) => {
-  console.log(film);
-  console.log(comments);
+const createPopupTempalte = (film, allComments) => {
   const {comments} = film;
   const filmInfo = film.filmInfo;
   const {poster, ageRating, title, alternativeTitle, totalRating, director, writers, actors, runtime, release, genre, description} = filmInfo;
-
   const writersList = writers.join(', ');
   const actorsList = actors.join(', ');
   const filmDuration = humanizeFilmDuration(runtime);
   const releaseCountry = release.releaseCountry;
   const releaseDate = humanizeDateDayMonthYear(release.date);
+  const commentDay = humanizeCommentDate(comments.date);
 
   const createGenresList = (genres) => (
     genres.map((element) => `<span class="film-details__genre">${element}</span>`).join(' ')
@@ -42,23 +42,24 @@ const createPopupTempalte = (film, comments) => {
 
   const emotionsComments = renderEmotions(emotions);
 
-  const generateCommetnsList = (commetns) => commetns
-    .map((commetn) => {
-      const isThisFilm = comments.id.includes(commetn.id) ? 'checked' : '';
-      return `
-    <li class="film-details__comment">
-      <span class="film-details__comment-emoji">
-        <img src="./images/emoji/smile.png" width="55" height="55" alt="emoji-smile">
-      </span>
-      <div>
-        <p class="film-details__comment-text">Interesting setting and a good cast</p>
-        <p class="film-details__comment-info">
-          <span class="film-details__comment-author">Tim Macoveev</span>
-          <span class="film-details__comment-day">2019/12/31 23:59</span>
-          <button class="film-details__comment-delete">Delete</button>
-        </p>
-      </div>
-    </li>`;
+  const generateCommetnsList = (commentaries) => commentaries
+    .map((commentary) => {
+      const isThisFilm = comments.includes(commentary.id);
+      if (isThisFilm) {
+        return (`<li class="film-details__comment">
+        <span class="film-details__comment-emoji">
+          <img src="./images/emoji/${commentary.emotion}.png" width="55" height="55" alt="emoji-${commentary.emotion}">
+        </span>
+        <div>
+          <p class="film-details__comment-text">${commentary.comment}</p>
+          <p class="film-details__comment-info">
+            <span class="film-details__comment-author">${commentary.author}</span>
+            <span class="film-details__comment-day">${commentDay}</span>
+            <button class="film-details__comment-delete">Delete</button>
+          </p>
+        </div>
+      </li>`);
+      }
     }).join(' ');
 
   const renderCommetns = (commetns) => (`
@@ -66,7 +67,7 @@ const createPopupTempalte = (film, comments) => {
   ${generateCommetnsList(commetns)}
   </ul>`);
 
-  const commentsList = renderCommetns(comments);
+  const commentsList = renderCommetns(allComments);
 
   return  (`<section class="film-details">
   <form class="film-details__inner" action="" method="get">
@@ -136,7 +137,7 @@ const createPopupTempalte = (film, comments) => {
 
     <div class="film-details__bottom-container">
       <section class="film-details__comments-wrap">
-        <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">4</span></h3>
+        <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${comments.length}</span></h3>
         ${commentsList}
         <div class="film-details__new-comment">
           <div class="film-details__add-emoji-label"></div>
