@@ -155,24 +155,28 @@ const createPopupTempalte = (film, allComments) => {
 
 
 export default class  PopupView {
+  #element = null;
+  #film = null;
+  #coomments = null;
+
   constructor(film, coomments) {
-    this.film = film;
-    this.coomments = coomments;
+    this.#film = film;
+    this.#coomments = coomments;
   }
 
-  getTemplate() {
-    return createPopupTempalte(this.film, this.coomments);
+  get template() {
+    return createPopupTempalte(this.#film, this.#coomments);
   }
 
-  getElement() {
-    if(!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if(!this.#element) {
+      this.#element = createElement(this.template);
     }
 
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
