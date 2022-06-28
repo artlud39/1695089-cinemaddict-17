@@ -8,10 +8,10 @@ const siteMainElement = siteBodyElement.querySelector('.main');
 const siteHeaderElement = siteBodyElement.querySelector('.header');
 
 const filmsModel = new FilmsModel();
-const boardPresenter = new BoardPresenter();
-boardPresenter.init(siteMainElement, filmsModel);
+const boardPresenter = new BoardPresenter(siteMainElement, filmsModel);
 
 render(new ProfileView(), siteHeaderElement);
+boardPresenter.init();
 
 const URL1 = 'https://17.ecmascript.pages.academy/cinemaddict/movies';
 const URL2 = 'https://17.ecmascript.pages.academy/cinemaddict/comments/11';
