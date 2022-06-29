@@ -1,7 +1,7 @@
 import FilmsModel from './model/films-model.js';
 import BoardPresenter from './presenter/board-presenter.js';
 import ProfileView from './view/profile-view.js';
-import {render} from './render.js';
+import {render} from './framework/render.js';
 
 const siteBodyElement = document.querySelector('body');
 const siteMainElement = siteBodyElement.querySelector('.main');
