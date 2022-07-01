@@ -1,6 +1,7 @@
 import {getRandomInteger, getRandomIntegerFloating} from '../utils/common.js';
 import {actors, posters, countries, titles, genres} from '../const.js';
 import dayjs from 'dayjs';
+import {nanoid} from 'nanoid';
 
 const descriptions = [
   'Oscar-winning film, a war drama about two young people, from the creators of timeless classic "Nu, Pogodi!" and "Alice in Wonderland", with the best fight scenes since Bruce Lee.',
@@ -25,7 +26,7 @@ const getRandomTotalRating = () => +getRandomIntegerFloating(1.1, 9.9).toFixed(1
 const getRandomGenres = () => genres.slice(getRandomInteger(1, 4));
 
 const getRandomFilms = () => ({
-  id: getRandomInteger(1,10),
+  id: nanoid(),
   comments: [getRandomInteger(1,10),getRandomInteger(1,10)],
   filmInfo: {
     title: titles[getRandomInteger(0, titles.length -1)],

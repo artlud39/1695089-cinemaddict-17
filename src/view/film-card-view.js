@@ -2,8 +2,18 @@ import AbstractView from '../framework/view/abstract-view.js';
 import {humanizeDateYears, getShortdescription, humanizeFilmDuration} from '../utils/films.js';
 
 const createFilmCardTempalte = (film) => {
-  const {comments} = film;
-  const {title, totalRating, genre, poster, release, description, runtime} = film.filmInfo;
+  const {
+    comments,
+    filmInfo: {
+      title,
+      totalRating,
+      genre,
+      poster,
+      release,
+      description,
+      runtime
+    }
+  } = film;
 
   const releaseYear = humanizeDateYears(release.date);
   const shortDescription = getShortdescription(description);

@@ -5,9 +5,24 @@ import {humanizeCommentDate} from '../utils/comments.js';
 import {emotions} from '../const.js';
 
 const createPopupTempalte = (film, allComments) => {
-  const {comments} = film;
-  const filmInfo = film.filmInfo;
-  const {poster, ageRating, title, alternativeTitle, totalRating, director, writers, actors, runtime, release, genre, description} = filmInfo;
+  const {
+    comments,
+    filmInfo: {
+      poster,
+      ageRating,
+      title,
+      alternativeTitle,
+      totalRating,
+      director,
+      writers,
+      actors,
+      runtime,
+      release,
+      genre,
+      description
+    }
+  } = film;
+
   const writersList = writers.join(', ');
   const actorsList = actors.join(', ');
   const filmDuration = humanizeFilmDuration(runtime);
